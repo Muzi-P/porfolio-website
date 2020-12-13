@@ -495,7 +495,7 @@ body.light hr.separator {
 }
 
 .home .bg {
-  background-image: url(http://via.placeholder.com/610x1020.jpg);
+  background-image: url("../img/projects/about/muzi.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
