@@ -121,7 +121,7 @@
 			let form = {}
 			form.name = document.getElementById("name").value
 			form.email = document.getElementById("email").value
-			form.subject = document.getElementById("subject").value
+			form.subject = `Porfolio Website: ${document.getElementById("subject").value}`
 			form.message = document.getElementById("message").value
 			fetch('/', {
 				method: 'post',
