@@ -21,6 +21,7 @@
 			$(".box p").css("display", "none");
 			$(".contactform").find(".output_message").addClass("success");
 			$(".output_message").text("Message Sent!");
+			document.contact.reset()
 	}
 	/* -------------------------------------------------------------- */
 	 /* encode
