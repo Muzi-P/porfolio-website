@@ -13,14 +13,24 @@
 		}
 		$('.youtube-video')[0].contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
 	}
-	/**
-	 * function to alert email sent
-	 */
+	/* -------------------------------------------------------------- */
+	 /* function to alert email sent
+	/* -------------------------------------------------------------- */
 	function emailAlert () {
 			$(".form-inputs").css("display", "none");
 			$(".box p").css("display", "none");
 			$(".contactform").find(".output_message").addClass("success");
 			$(".output_message").text("Message Sent!");
+	}
+	/* -------------------------------------------------------------- */
+	 /* encode
+	/* -------------------------------------------------------------- */
+	function encode (data) {
+		return Object.keys(data)
+			.map(
+				key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+			)
+			.join("&");
 	}
 
 	$(document).ready(function() {
@@ -107,13 +117,27 @@
 		$(".contactform").on("submit", function() {
 			$(".output_message").text("Sending...");
 
+			let form = {}
+			form.name = document.getElementById("name").value
+			form.email = document.getElementById("email").value
+			form.subject = document.getElementById("subject").value
+			form.message = document.getElementById("message").value
+			fetch('/', {
+				method: 'post',
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				body: encode({
+					'form-name': 'contact',
+					...form
+					})
+				}).then(() => {
+					emailAlert()
+			})
 			// $(".form-inputs").css("display", "none");
 			// $(".box p").css("display", "none");
 			// $(".contactform").find(".output_message").addClass("success");
 			// $(".output_message").text("Message Sent!");
-
-			setTimeout(emailAlert, 1000)
-			// var form = $(this);
+			// setTimeout(emailAlert, 1000)
+			// console.log(form);
 			// $.ajax({
 			// 	url: form.attr("action"),
 			// 	method: form.attr("method"),
